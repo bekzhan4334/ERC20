@@ -1,13 +1,20 @@
 <template>
+    <h1> DEPLOY CONTRACT SECTION</h1>
     <div>
         <input v-model="tokenName" placeholder="Enter token name"
         />
+    </div>
+    <div>
         <input v-model="symbol" placeholder="Enter symbol(Ticker) name"
         />
+    </div>
+    <div>
         <input v-model="decimals" placeholder="Enter decimals for your token"
         />
-        <button @click="createToken">Create token</button>
     </div>
+    <br>
+    <button @click="createToken">Create token</button>
+    
 </template>
 
 <script>
@@ -18,7 +25,7 @@ export default{
         return{
             tokenName: "",
             symbol: "",
-            decimals: 18,
+            decimals: "",
         }
     },
     methods:{

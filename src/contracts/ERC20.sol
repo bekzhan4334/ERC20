@@ -43,6 +43,10 @@ contract ERC20 {
         return balances[account];
     }
 
+     function allowance(address owner, address spender) public view returns(uint256){
+        return allowed[owner][spender];
+    }
+
     function transfer(address to, uint256 amount) public returns(bool){
         require(balances[msg.sender] >= amount, "ERC20: not enough tokens");
         balances[msg.sender] -= amount;
@@ -59,10 +63,7 @@ contract ERC20 {
         return true;
     }
 
-    function allowance(address owner, address spender) public view returns(uint256){
-        return allowed[owner][spender];
-    }
-
+   
     function transferFrom(address from, address to, uint256 amount) public returns(bool){
         require(allowed[from][msg.sender] >= amount, "ERC20: no permission to spend");
         require(balances[from] >= amount, "ERC20: not enough tokens");
