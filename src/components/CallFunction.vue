@@ -15,7 +15,7 @@
             </my-input>
         </div>
         <button @click="handler">Call contract function <strong> {{ buttonText }}</strong></button>
-        <div>
+        <div :id=buttonText class="field hide">
             <span
                 v-if="(readOnly === true)"
             >
@@ -88,6 +88,11 @@ export default{
                     "https://sepolia.etherscan.io/tx/0x4ec1d4b5e95b800dcce8aae1cb6908cd23404b430beb57b4ed8968a150f569a7"
                     this.result = 'https://sepolia.etherscan.io/tx/' + await this.$props.buttonHandler(this.args)
                 }
+                this.clearInput = true
+                this.args = []
+                if(document.getElementById(this.buttonText).classList.contains("hide")){
+                    document.getElementById(this.buttonText).classList.remove("hide")
+                }
             }
             }
            
@@ -101,5 +106,16 @@ export default{
     }
 }
 </script>
+
+<style>
+.field{
+    padding: 10px 0px;
+    margin-top: 5px;
+}
+.hide{
+    visibility: hidden;
+    display: inline;
+}
+</style>
 
 

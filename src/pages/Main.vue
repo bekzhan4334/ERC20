@@ -17,6 +17,10 @@
         <p> Chain ID: {{ $store.state.chainId }}</p>
         <p>Chain: {{ $store.state.chain }}</p>
     </div>
+    <div>
+        <h3>Connected to: </h3>
+        <div>Contract address: {{ $store.state.erc20Address }}</div>
+    </div>
     <!-- Deploy section -->
     <deploy>
         
@@ -71,7 +75,7 @@
 
         <call-function
         buttonText="name()"
-        :buttonHandler="name"
+        :buttonHandler="getName"
         >
         </call-function>
 
