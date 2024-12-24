@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <div class="input-wrapper">
         <input 
             :placeholder="'Enter argument ' + inputText"
             v-model="arg"
             @input="$emit('input', {argId, arg})"
+            class="input-field"
         />
     </div>
 </template>
@@ -47,4 +48,27 @@ export default{
 }
 </script>
 
+<style scoped>
+.input-wrapper {
+    margin-bottom: 15px;
+}
 
+.input-field {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #e5e5e5;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.input-field::placeholder {
+    color: #aaa;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #18c6a6;
+}
+</style>

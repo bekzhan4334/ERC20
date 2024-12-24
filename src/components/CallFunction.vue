@@ -1,32 +1,27 @@
 <template>
-    <div>
-        <div>
+    <div class="call-function-container">
+        <div class="input-section">
             <!-- passing info to myinput component -->
             <my-input
                 v-if="(inputText.length > 0 )"
                 v-for="id in inputText.length"
+                :key="id"
                 :inputText="inputText[id-1]"
                 :argId="id-1"
                 :clear="clearInput"
                 @input="inputArgument"
                 @clear="stopClear"
+                class="my-input"
             >
-
             </my-input>
         </div>
-        <button @click="handler">Call contract function <strong> {{ buttonText }}</strong></button>
-        <div :id=buttonText class="field hide">
-            <span
-                v-if="(readOnly === true)"
-            >
+        <button @click="handler" class="btn">Call contract function <strong>{{ buttonText }}</strong></button>
+        <div :id="buttonText" class="field hide">
+            <span v-if="(readOnly === true)" class="result-text">
                 Result: {{ result }}
             </span>
-            <a
-                v-else
-                target="_blank"
-                v-bind:href="result"
-            >
-                Check transaction of etherscan
+            <a v-else target="_blank" v-bind:href="result" class="result-link">
+                Check transaction on Etherscan
             </a>
         </div>
     </div>
@@ -107,14 +102,57 @@ export default{
 }
 </script>
 
-<style>
-.field{
-    padding: 10px 0px;
-    margin-top: 5px;
+<style scoped>
+.call-function-container {
+    background-color: #1e1e1e;
+    color: #e5e5e5;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
 }
-.hide{
+
+.input-section {
+    margin-bottom: 15px;
+}
+
+.btn {
+    background-color: #18c6a6;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #14a089;
+}
+
+.field {
+    padding: 10px 0;
+    margin-top: 5px;
+    color: #e5e5e5;
+}
+
+.hide {
     visibility: hidden;
     display: inline;
+}
+
+.result-text {
+    font-style: italic;
+    color: #999;
+}
+
+.result-link {
+    color: #18c6a6;
+    text-decoration: underline;
+}
+
+.result-link:hover {
+    color: #14a089;
 }
 </style>
 
